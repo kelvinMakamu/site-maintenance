@@ -10,4 +10,8 @@ public class Engineer {
         this.lastName  = lastName;
     }
 
+    public String getFirstName(){
+        return this.firstName;
+    }
+
 }

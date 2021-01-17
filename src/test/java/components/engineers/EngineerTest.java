@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class EngineerTest {
 
     @Rule
-    DatabaseRule databaseRule = new DatabaseRule();
+    public DatabaseRule databaseRule = new DatabaseRule();
 
     @Test
     public void Engineer_instantiatesCorrectly_true(){
