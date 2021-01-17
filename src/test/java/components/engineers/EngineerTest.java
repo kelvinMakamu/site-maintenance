@@ -111,6 +111,16 @@ public class EngineerTest {
         assertEquals(0, Engineer.all().size());
     }
 
+    @Test
+    public void deleteAll_deleteAllEngineerRecords_0(){
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        Engineer secondEngineer  = new Engineer("gerald","white");
+        secondEngineer.save();
+        Engineer.deleteAll();
+        assertEquals(0,Engineer.all().size());
+    }
+
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
         return new Engineer("kelvin","makamu");
