@@ -127,8 +127,8 @@ public class EngineerTest {
         Engineer firstEngineer   = setUpNewEngineer();
         firstEngineer.save();
         Site firstSite           = setUpNewSite();
-        firstSite.save();
-        firstEngineer.assignSite(firstSite.getId());
+        //firstSite.save();
+        // firstEngineer.assignSite(firstSite.getId());
         //Return Site By ID
         //assertTrue getAssignedSites contains foundSite
     }

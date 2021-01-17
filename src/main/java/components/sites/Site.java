@@ -9,7 +9,7 @@ public class Site {
     private Timestamp createdAt;
 
     public Site(String name, String town){
-        this.name = name;
-        this.town = town;
+        this.name = name.toLowerCase();
+        this.town = town.toLowerCase();;
     }
 }
