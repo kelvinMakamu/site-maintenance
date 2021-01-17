@@ -1,5 +1,8 @@
 package components.sites;
 
+import components.data.Database;
+import org.sql2o.Connection;
+
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -14,12 +17,32 @@ public class Site {
         this.town = town.toLowerCase();;
     }
 
+    public int getId(){
+        return this.id;
+    }
+
     public String getName(){
         return this.name;
     }
     
     public String getTown(){
         return this.town;
+    }
+
+    public Timestamp getCreatedAt(){
+        return this.createdAt;
+    }
+
+    public void save(){
+        String query = "INSERT INTO sites(name,town,createdAt)" +
+                " VALUES(:name,:town,now())";
+        try(Connection connection = Database.sql2o.open()){
+            this.id = (int) connection.createQuery(query,true)
+                    .addParameter("name",this.name)
+                    .addParameter("town",this.town)
+                    .executeUpdate()
+                    .getKey();
+        }
     }
 
     @Override
