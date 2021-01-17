@@ -1,5 +1,7 @@
 package components.engineers;
 
+import java.util.Objects;
+
 public class Engineer {
     private int id;
     private String firstName;
@@ -18,4 +20,16 @@ public class Engineer {
         return this.lastName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Engineer)) return false;
+        Engineer engineer = (Engineer) o;
+        return id == engineer.id && getFirstName().equals(engineer.getFirstName()) && getLastName().equals(engineer.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, getFirstName(), getLastName());
+    }
 }
