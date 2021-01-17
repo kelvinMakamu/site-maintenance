@@ -1,0 +1,105 @@
+{{#partial "title"}}
+    Create Site and View Available Sites
+{{/partial}}
+{{#partial "content"}}
+    {{#if createdSite}}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{createdSite}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
+    {{#if updatedSite}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{updatedSite}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
+    {{#if deletedSite}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{deletedSite}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
+    <div class="row">
+        <div class="col-md-3 col-lg-3 col-sm-12 department-form">
+            <h4>New Site</h4>
+            <hr>
+            <form method="post" action="/sites">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Site Name</label>
+                            <input class="form-control" type="text" placeholder="Site Name"
+                                   name="name" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Site Town</label>
+                            <input class="form-control" type="text" placeholder="Site Town Name"
+                                   name="town" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <input class="btn btn-success" type="submit" value="Add Site">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-12">
+            <h4 class="text-center"> Maintenance Sites</h4>
+            <hr/>
+            <div class="container department-container">
+                {{#if sites}}
+                    <div class="row">
+                        {{#each sites }}
+                            <div class="col-md-5 col-lg-5 col-sm-12 card">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <p class="text-center department-name">{{name}}</p>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <hr>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 col-sm-12">
+                                        <a href="/sites/{{id}}/members" class="btn btn-primary btn-sm">View</a>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 col-sm-12">
+                                        <a href="/sites/{{id}}" class="btn btn-warning btn-sm">Update</a>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 col-sm-12">
+                                        <a href="/sites/{{id}}/delete" class="btn btn-danger btn-sm link-right">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{else}}
+                    <div class="row">
+                        <div class="col-md-10 col-md-10 col-sm-12 card">
+                            <p class="no-department">No sites available!</p>
+                            <p>Please fill in the form on the left to create a new site</p>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}
