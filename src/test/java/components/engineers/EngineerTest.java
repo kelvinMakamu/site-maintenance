@@ -13,8 +13,12 @@ public class EngineerTest {
 
     @Test
     public void Engineer_instantiatesCorrectly_true(){
-        Engineer engineer = new Engineer("Kelvin","Makamu");
-        assertEquals(true,engineer instanceof Engineer);
+        Engineer testEngineer = setUpNewEngineer();
+        assertTrue(testEngineer instanceof Engineer);
     }
 
+    // HELPER METHOD
+    public Engineer setUpNewEngineer(){
+        return new Engineer("Kelvin","Makamu");
+    }
 }
