@@ -37,6 +37,7 @@ public class SiteTest {
         assertTrue(firstSite.equals(secondSite));
     }
 
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
