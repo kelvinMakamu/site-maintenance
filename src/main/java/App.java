@@ -12,5 +12,6 @@ public class App {
     public static void main(String[] args) {
         port(getAssignedServerPort());
         staticFileLocation("/public");
+
     }
 }
