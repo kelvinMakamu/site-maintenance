@@ -109,6 +109,13 @@ public class Site {
         }
     }
 
+    public static void deleteAll(){
+        String query = "DELETE FROM sites";
+        try(Connection connection = Database.sql2o.open()){
+            connection.createQuery(query).executeUpdate();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
