@@ -36,6 +36,13 @@ public class EngineerTest {
         assertTrue(firstEngineer.equals(secondEngineer));
     }
 
+    @Test
+    public void save_insertsEngineerObjectIntoDatabase(){
+        Engineer testEngineer = setUpNewEngineer();
+        testEngineer.save();
+        assertTrue(Engineer.all().get(0).equals(testEngineer));
+    }
+
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
         return new Engineer("Kelvin","Makamu");
