@@ -17,6 +17,12 @@ public class EngineerTest {
         assertTrue(testEngineer instanceof Engineer);
     }
 
+    @Test
+    public void getFirstName_engineerInstantiatesWithFirstName_Kelvin(){
+        Engineer testEngineer = setUpNewEngineer();
+        assertEquals("Kelvin",testEngineer.getFirstName());
+    }
+
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
         return new Engineer("Kelvin","Makamu");
