@@ -143,7 +143,7 @@ public class EngineerTest {
         Site firstSite           = setUpNewSite();
         firstSite.save();
         firstEngineer.assignSite(firstSite.getId());
-        Site secondSite          = new Site("Yamoko","kigali");
+        Site secondSite          = new Site("yamoko","kigali");
         secondSite.save();
         firstEngineer.assignSite(secondSite.getId());
         assertEquals(2, firstEngineer.getAssignedSites().size());

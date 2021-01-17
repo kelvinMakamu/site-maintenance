@@ -15,9 +15,11 @@ public class DatabaseRule extends ExternalResource {
     protected void after() {
         String engineersDeleteQuery  = "DELETE FROM engineers";
         String sitesDeleteQuery      = "DELETE FROM sites";
+        String assignDeleteQuery     = "DELETE FROM engineer_site";
         try(Connection connection = Database.sql2o.open()){
             connection.createQuery(engineersDeleteQuery).executeUpdate();
             connection.createQuery(sitesDeleteQuery).executeUpdate();
+            connection.createQuery(assignDeleteQuery).executeUpdate();
         }
     }
 }
