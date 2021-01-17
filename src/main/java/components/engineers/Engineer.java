@@ -53,6 +53,15 @@ public class Engineer {
         }
     }
 
+    public static Engineer find(int engineerId){
+        String query = "SELECT * FROM engineers WHERE id=:id";
+        try(Connection connection = Database.sql2o.open()){
+            return connection.createQuery(query)
+                    .addParameter("id",engineerId)
+                    .executeAndFetchFirst(Engineer.class);
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
