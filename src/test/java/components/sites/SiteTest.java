@@ -180,6 +180,13 @@ public class SiteTest {
         assertTrue(firstSite.alreadyAssociated());
     }
 
+    @Test
+    public void alreadyAssociated_siteThatHasNotBeenAssignedToAnEngineer_false(){
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        assertFalse(firstSite.alreadyAssociated());
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
