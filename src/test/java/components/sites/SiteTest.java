@@ -25,9 +25,16 @@ public class SiteTest {
     }
 
     @Test
-    public void getTown_siteInstantiatesWithTown_amaboko(){
+    public void getTown_siteInstantiatesWithTown_arusha(){
         Site testSite = setUpNewSite();
         assertEquals("arusha",testSite.getTown());
+    }
+
+    @Test
+    public void equals_comparesTwoSiteObjects_true(){
+        Site firstSite  = setUpNewSite();
+        Site secondSite = setUpNewSite();
+        assertTrue(firstSite.equals(secondSite));
     }
 
     // HELPER METHOD
