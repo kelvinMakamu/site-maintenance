@@ -36,6 +36,22 @@ public class Engineer {
         return this.createdAt;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public void save(){
         String query = "INSERT INTO engineers(firstName,lastName,createdAt)" +
                 " VALUES(:firstName,:lastName,now())";
