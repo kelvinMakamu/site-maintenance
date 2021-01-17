@@ -1,0 +1,119 @@
+select, input, input:focus, textarea:focus, input.form-control:focus {
+    outline:none !important;
+    outline-width: 0 !important;
+    border-radius: unset !important;
+    box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+}
+
+.btn{
+    color: #fff !important;
+    border-radius: unset !important;
+}
+
+body{
+    background:#fff !important;
+    width: 100% !important;
+    margin-bottom: 2% !important;
+    scrollbar-width: thin !important;
+    letter-spacing: 1px !important;
+}
+
+.jumbotron{
+    background: url("../images/tech2.jpg") no-repeat center center;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
+    height:75vh;
+}
+
+.jumbotron .container{
+    padding: 2% 2% 2% 2% !important;
+    margin: 15% 0% 0% 2.5% !important;
+    color: #fff;
+    background: #000;
+    box-shadow:0px 2px 3px #000;
+    width: 35% !important;
+    opacity: 0.5 !important;
+}
+
+.display-4, h1{
+    font-size: 25px !important;
+    font-weight: thinner !important;
+    text-transform: uppercase !important;
+}
+
+h2, h3, h4{
+    font-size: 18px !important;
+    font-weight: thinner !important;
+    text-transform: uppercase !important;
+}
+
+.lead{
+    margin-top: 2% !important;
+    font-size: 18px !important;
+}
+
+select{
+    text-transform: capitalize !important;
+}
+
+.card {
+  border-radius: 4px;
+  border: 1px solid #eee;
+  box-shadow: 0px 2px 3px #eee;
+  background-color: #fff;
+  margin: 2% 2% 2% 0%;
+  padding: 2% 2% 2% 2%;
+  border-top:3px solid #439894;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+}
+
+.dept-desc{
+    color: #439894 !important;
+    font-size: 15px !important;
+    font-weight: thin !important;
+}
+
+strong{
+    text-transform: capitalize !important;
+}
+
+.department-form{
+    border: 1px solid #eee !important;
+    padding: 2% 2% 2% 2% !important;
+    height: 25% !important;
+}
+
+.department-container{
+  padding-left:12.5%;
+}
+
+.no-department{
+    color: red;
+    font-size: 18px;
+    text-decoration: underline;
+    text-transform: capitalize;
+    margin-bottom: 2.5% !important;
+}
+
+.department-name{
+    font-size: 16px;
+    text-transform: capitalize;
+    margin: 2% 0% 2% 0% !important;
+}
+
+.link-right{
+    margin-right:5% !important;
+}
+
+.footer{
+    margin-top: 4% !important;
+    margin-bottom: -2% !important;
+    padding: 2% 2% 0.5% 2% !important;
+    background: #dedede !important;
+    height: 1.5% !important;
+}
