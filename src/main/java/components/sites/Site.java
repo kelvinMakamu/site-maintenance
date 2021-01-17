@@ -3,6 +3,7 @@ package components.sites;
 import components.data.Database;
 import components.engineers.Engineer;
 import org.sql2o.Connection;
+import org.sql2o.Sql2oException;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -162,6 +163,18 @@ public class Site {
             connection.createQuery(query)
                     .addParameter("siteId",this.id)
                     .executeUpdate();
+        }
+    }
+
+    public boolean alreadyAssociated(){
+        String query = "SELECT engineerId FROM engineer_site WHERE siteId=:id";
+        try(Connection connection = Database.sql2o.open()){
+            List<Integer> engineerIds = connection.createQuery(query)
+                    .addParameter("id",this.id)
+                    .executeAndFetch(Integer.class);
+            return engineerIds.isEmpty() ? false : true;
+        }catch (Sql2oException Exception){
+            return false;
         }
     }
 
