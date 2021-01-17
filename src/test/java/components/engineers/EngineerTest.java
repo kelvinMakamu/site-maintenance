@@ -148,6 +148,22 @@ public class EngineerTest {
         firstEngineer.assignSite(secondSite.getId());
         assertEquals(2, firstEngineer.getAssignedSites().size());
     }
+    
+    @Test
+    public void dissociateSite_removesSiteAssociationWithEngineer(){
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        firstEngineer.assignSite(firstSite.getId());
+        Site secondSite          = new Site("yamoko","kigali");
+        secondSite.save();
+        firstEngineer.assignSite(secondSite.getId());
+        firstEngineer.dissociateSite(secondSite.getId());
+        assertFalse(firstEngineer.getAssignedSites().contains(secondSite));
+        assertTrue(firstEngineer.getAssignedSites().contains(firstSite));
+        assertEquals(1,firstEngineer.getAssignedSites().size());
+    }
 
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
