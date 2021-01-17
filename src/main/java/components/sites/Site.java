@@ -146,6 +146,16 @@ public class Site {
         }
     }
 
+    public void dissociateEngineer(int engineerId){
+        String query = "DElETE FROM engineer_site WHERE engineerId=:id AND siteId=:siteId";
+        try(Connection connection = Database.sql2o.open()){
+            connection.createQuery(query)
+                    .addParameter("id",engineerId)
+                    .addParameter("siteId",this.id)
+                    .executeUpdate();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
