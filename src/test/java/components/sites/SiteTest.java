@@ -23,6 +23,13 @@ public class SiteTest {
         Site testSite = setUpNewSite();
         assertEquals("amaboko",testSite.getName());
     }
+
+    @Test
+    public void getTown_siteInstantiatesWithTown_amaboko(){
+        Site testSite = setUpNewSite();
+        assertEquals("arusha",testSite.getTown());
+    }
+    
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
