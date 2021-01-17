@@ -123,8 +123,26 @@ public class SiteTest {
         assertEquals(0,Site.all().size());
     }
 
+    @Test
+    public void assignEngineer_assignAnEngineer(){
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        firstSite.assignEngineer(firstEngineer.getId());
+        //Return Engineer By ID
+        Engineer foundEngineer   = Engineer.find(firstEngineer.getId());
+        //assertTrue getAssignedEngineer contains foundEngineer
+        assertTrue(firstSite.getAssignedEngineer().contains(foundEngineer));
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
     }
+
+    public Engineer setUpNewEngineer(){
+        return new Engineer("kelvin","makamu");
+    }
+
 }
