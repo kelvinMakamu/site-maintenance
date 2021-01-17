@@ -18,15 +18,15 @@ public class EngineerTest {
     }
 
     @Test
-    public void getFirstName_engineerInstantiatesWithFirstName_Kelvin(){
+    public void getFirstName_engineerInstantiatesWithFirstName_kelvin(){
         Engineer testEngineer = setUpNewEngineer();
-        assertEquals("Kelvin",testEngineer.getFirstName());
+        assertEquals("kelvin",testEngineer.getFirstName());
     }
 
     @Test
-    public void getLastName_engineerInstantiatesWithLastName_Makamu(){
+    public void getLastName_engineerInstantiatesWithLastName_makamu(){
         Engineer testEngineer = setUpNewEngineer();
-        assertEquals("Makamu",testEngineer.getLastName());
+        assertEquals("makamu",testEngineer.getLastName());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class EngineerTest {
     public void all_returnsAllSavedEngineerObjects(){
         Engineer firstEngineer   = setUpNewEngineer();
         firstEngineer.save();
-        Engineer secondEngineer  = new Engineer("Gerald","White");
+        Engineer secondEngineer  = new Engineer("gerald","white");
         secondEngineer.save();
         assertTrue(Engineer.all().get(0).equals(firstEngineer));
         assertTrue(Engineer.all().get(1).equals(secondEngineer));
@@ -65,7 +65,7 @@ public class EngineerTest {
     public void find_queryEngineerObjectByItsId(){
         Engineer firstEngineer   = setUpNewEngineer();
         firstEngineer.save();
-        Engineer secondEngineer  = new Engineer("Gerald","White");
+        Engineer secondEngineer  = new Engineer("gerald","white");
         secondEngineer.save();
         assertEquals(Engineer.find(secondEngineer.getId()),secondEngineer);
     }
@@ -76,7 +76,7 @@ public class EngineerTest {
         String initialFirstName  = firstEngineer.getFirstName();
         String initialLastName   = firstEngineer.getLastName();
         firstEngineer.save();
-        firstEngineer.update(firstEngineer.getId(),"Melvin","Jones");
+        firstEngineer.update(firstEngineer.getId(),"melvin","jones");
         Engineer updatedEngineer = Engineer.find(firstEngineer.getId());
         String updatedFirstName  = updatedEngineer.getFirstName();
         String updatedLastName   = updatedEngineer.getLastName();
@@ -87,6 +87,6 @@ public class EngineerTest {
 
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
-        return new Engineer("Kelvin","Makamu");
+        return new Engineer("kelvin","makamu");
     }
 }

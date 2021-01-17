@@ -3,9 +3,9 @@ package components.engineers;
 import components.data.Database;
 import org.sql2o.Connection;
 
-import javax.xml.crypto.Data;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Engineer {
@@ -15,8 +15,8 @@ public class Engineer {
     private Timestamp createdAt;
 
     public Engineer(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName  = lastName;
+        this.firstName = firstName.toLowerCase();
+        this.lastName  = lastName.toLowerCase();
     }
 
     public int getId() {
