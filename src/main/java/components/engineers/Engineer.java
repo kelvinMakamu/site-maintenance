@@ -115,6 +115,17 @@ public class Engineer {
         }
     }
 
+    public void assignSite(int siteId){
+        String query = "INSERT INTO engineer_site(engineerId,siteId,createdAt) " +
+                "VALUES(:engineerId,:siteId, now())";
+        try(Connection connection = Database.sql2o.open()){
+            connection.createQuery(query)
+                    .addParameter("engineerId",this.id)
+                    .addParameter("siteId",siteId)
+                    .executeUpdate();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
