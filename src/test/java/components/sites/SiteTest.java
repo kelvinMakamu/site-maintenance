@@ -44,6 +44,14 @@ public class SiteTest {
         assertTrue(Site.all().get(0).equals(firstSite));
     }
 
+    @Test
+    public void save_assignsIdToInsertedSiteObject(){
+        Site firstSite  = setUpNewSite();
+        firstSite.save();
+        Site foundSite = Site.all().get(0);
+        assertEquals(firstSite.getId(),foundSite.getId());
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
