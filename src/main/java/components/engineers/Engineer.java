@@ -1,9 +1,11 @@
 package components.engineers;
 
 import components.data.Database;
+import components.sites.Site;
 import org.sql2o.Connection;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -123,6 +125,24 @@ public class Engineer {
                     .addParameter("engineerId",this.id)
                     .addParameter("siteId",siteId)
                     .executeUpdate();
+        }
+    }
+
+    public List<Site> getAssignedSites(){
+        String joinQuery = "SELECT siteId FROM engineer_site WHERE engineerId=:engineerId";
+        try(Connection connection = Database.sql2o.open()){
+            List<Integer> siteIds = connection.createQuery(joinQuery)
+                    .addParameter("engineerId",this.id)
+                    .executeAndFetch(Integer.class);
+            List<Site> assignedSites = new ArrayList<>();
+            for(Integer siteId: siteIds){
+                String query = "SELECT * FROM sites WHERE id=:id";
+                Site site    = connection.createQuery(query)
+                        .addParameter("id",siteId)
+                        .executeAndFetchFirst(Site.class);
+                assignedSites.add(site);
+            }
+            return assignedSites;
         }
     }
 
