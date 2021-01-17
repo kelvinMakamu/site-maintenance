@@ -3,6 +3,7 @@ package components.engineers;
 import components.data.Database;
 import org.sql2o.Connection;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,6 +11,7 @@ public class Engineer {
     private int id;
     private String firstName;
     private String lastName;
+    private Timestamp createdAt;
 
     public Engineer(String firstName, String lastName) {
         this.firstName = firstName;
@@ -26,6 +28,10 @@ public class Engineer {
 
     public String getLastName(){
         return this.lastName;
+    }
+
+    public Timestamp getCreatedAt(){
+        return this.createdAt;
     }
 
     public void save(){
