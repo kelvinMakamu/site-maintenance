@@ -62,7 +62,8 @@ public class Engineer {
         }
     }
 
-    public int update(int engineerId, String updatedFirstName, String updatedLastName){
+    public int update(String updatedFirstName, String updatedLastName){
+        int engineerId = this.id;
         Engineer foundEngineer = Engineer.find(engineerId);
         String foundFirstName  = foundEngineer.getFirstName();
         String foundLastName   = foundEngineer.getLastName();
@@ -99,7 +100,14 @@ public class Engineer {
         }
     }
 
-
+    public void delete(){
+        String query = "DELETE FROM engineers WHERE id=:id";
+        try(Connection connection = Database.sql2o.open()){
+            connection.createQuery(query)
+                    .addParameter("id",this.id)
+                    .executeUpdate();
+        }
+    }
 
     @Override
     public boolean equals(Object o) {

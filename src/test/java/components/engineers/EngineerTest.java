@@ -76,8 +76,7 @@ public class EngineerTest {
         String initialFirstName  = firstEngineer.getFirstName();
         String initialLastName   = firstEngineer.getLastName();
         firstEngineer.save();
-        int updateStatus         = firstEngineer.update(firstEngineer.getId(),
-                "melvin","jones");
+        int updateStatus         = firstEngineer.update("melvin","jones");
         Engineer updatedEngineer = Engineer.find(firstEngineer.getId());
         String updatedFirstName  = updatedEngineer.getFirstName();
         String updatedLastName   = updatedEngineer.getLastName();
