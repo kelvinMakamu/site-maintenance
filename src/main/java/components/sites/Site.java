@@ -37,6 +37,22 @@ public class Site {
         return this.createdAt;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public void save(){
         String query = "INSERT INTO sites(name,town,createdAt)" +
                 " VALUES(:name,:town,now())";
