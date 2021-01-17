@@ -3,6 +3,7 @@ package components.engineers;
 import components.data.Database;
 import org.sql2o.Connection;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Engineer {
@@ -36,6 +37,13 @@ public class Engineer {
                     .addParameter("lastName",this.lastName)
                     .executeUpdate()
                     .getKey();
+        }
+    }
+
+    public static List<Engineer> all(){
+        String query = "SELECT * FROM engineers";
+        try(Connection connection = Database.sql2o.open()){
+            return connection.createQuery(query).executeAndFetch(Engineer.class);
         }
     }
 
