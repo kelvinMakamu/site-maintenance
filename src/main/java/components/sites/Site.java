@@ -5,6 +5,7 @@ import components.engineers.Engineer;
 import org.sql2o.Connection;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -124,6 +125,24 @@ public class Site {
                     .addParameter("engineerId",engineerId)
                     .addParameter("siteId",this.id)
                     .executeUpdate();
+        }
+    }
+
+    public List<Engineer> getAssignedEngineer(){
+        String joinQuery = "SELECT engineerId FROM engineer_site WHERE siteId=:siteId";
+        try(Connection connection = Database.sql2o.open()){
+            List<Integer> engineerIds = connection.createQuery(joinQuery)
+                    .addParameter("siteId",this.id)
+                    .executeAndFetch(Integer.class);
+            List<Engineer> assignedEngineers = new ArrayList<>();
+            for(Integer engineerId: engineerIds){
+                String query = "SELECT * FROM engineers WHERE id=:id";
+                Engineer engineer    = connection.createQuery(query)
+                        .addParameter("id",engineerId)
+                        .executeAndFetchFirst(Engineer.class);
+                assignedEngineers.add(engineer);
+            }
+            return assignedEngineers;
         }
     }
 
