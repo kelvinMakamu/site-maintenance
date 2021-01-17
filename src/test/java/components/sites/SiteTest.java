@@ -136,6 +136,16 @@ public class SiteTest {
         assertTrue(firstSite.getAssignedEngineer().contains(foundEngineer));
     }
 
+    @Test
+    public void getAssignedEngineer_countEngineerAssignedToASite(){
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        firstSite.assignEngineer(firstEngineer.getId());
+        assertEquals(1, firstSite.getAssignedEngineer().size());
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
