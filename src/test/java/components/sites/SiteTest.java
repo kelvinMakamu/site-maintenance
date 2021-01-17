@@ -18,6 +18,11 @@ public class SiteTest {
         assertTrue(testSite instanceof Site);
     }
 
+    @Test
+    public void getName_siteInstantiatesWithName_amaboko(){
+        Site testSite = setUpNewSite();
+        assertEquals("amaboko",testSite.getName());
+    }
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
