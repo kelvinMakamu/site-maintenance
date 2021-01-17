@@ -23,6 +23,12 @@ public class EngineerTest {
         assertEquals("Kelvin",testEngineer.getFirstName());
     }
 
+    @Test
+    public void getLastName_engineerInstantiatesWithLastName_Makamu(){
+        Engineer testEngineer = setUpNewEngineer();
+        assertEquals("Makamu",testEngineer.getLastName());
+    }
+
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
         return new Engineer("Kelvin","Makamu");
