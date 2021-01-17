@@ -16,4 +16,8 @@ public class Site {
     public String getName(){
         return this.name;
     }
+    
+    public String getTown(){
+        return this.town;
+    }
 }

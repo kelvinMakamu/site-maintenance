@@ -29,7 +29,7 @@ public class SiteTest {
         Site testSite = setUpNewSite();
         assertEquals("arusha",testSite.getTown());
     }
-    
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
