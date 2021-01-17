@@ -113,6 +113,16 @@ public class SiteTest {
         assertEquals(0, Site.all().size());
     }
 
+    @Test
+    public void deleteAll_deleteAllSiteRecords_0(){
+        Site firstSite   = setUpNewSite();
+        firstSite.save();
+        Site secondSite  = new Site("amagoro","kampala");
+        secondSite.save();
+        Site.deleteAll();
+        assertEquals(0,Site.all().size());
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
