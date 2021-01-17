@@ -71,6 +71,42 @@ public class SiteTest {
         assertEquals(Site.find(secondSite.getId()),secondSite);
     }
 
+    @Test
+    public void update_updateSiteDetails(){
+        Site firstSite       = setUpNewSite();
+        String initialName   = firstSite.getName();
+        String initialTown   = firstSite.getTown();
+        firstSite.save();
+        int updateStatus     = firstSite.update("beberu","nakuru");
+        Site updatedSite     = Site.find(firstSite.getId());
+        String updatedName   = updatedSite.getName();
+        String updatedTown   = updatedSite.getTown();
+        assertEquals(firstSite.getId(),updatedSite.getId());
+        switch(updateStatus){
+            case 1000:
+            assertNotEquals(initialName,updatedName);
+            assertNotEquals(initialTown,updatedTown);
+            break;
+
+            case 1002:
+            assertNotEquals(initialName,updatedName);
+            assertEquals(initialTown,updatedTown);
+            break;
+
+            case 1004:
+            assertEquals(initialName,updatedName);
+            assertNotEquals(initialTown,updatedTown);
+            break;
+
+            case 1001:
+            assertEquals(initialName,updatedName);
+            assertEquals(initialTown,updatedTown);
+            break;
+        }
+    }
+
+    
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
