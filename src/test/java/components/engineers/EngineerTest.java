@@ -76,13 +76,30 @@ public class EngineerTest {
         String initialFirstName  = firstEngineer.getFirstName();
         String initialLastName   = firstEngineer.getLastName();
         firstEngineer.save();
-        firstEngineer.update(firstEngineer.getId(),"melvin","jones");
+        int updateStatus = firstEngineer.update(firstEngineer.getId(),"melvin","jones");
         Engineer updatedEngineer = Engineer.find(firstEngineer.getId());
         String updatedFirstName  = updatedEngineer.getFirstName();
         String updatedLastName   = updatedEngineer.getLastName();
         assertEquals(firstEngineer.getId(),updatedEngineer.getId());
-        assertNotEquals(initialFirstName,updatedFirstName);
-        assertNotEquals(initialLastName,updatedLastName);
+        switch(updateStatus){
+            case 1000:
+            assertNotEquals(initialFirstName,updatedFirstName);
+            assertNotEquals(initialLastName,updatedLastName);
+            break;
+
+            case 1002:
+            assertNotEquals(initialFirstName,updatedFirstName);
+            break;
+
+            case 1004:
+            assertNotEquals(initialLastName,updatedLastName);
+            break;
+
+            case 1001:
+            assertEquals(initialFirstName,updatedFirstName);
+            assertEquals(initialLastName,updatedLastName);
+            break;
+        }
     }
 
     // HELPER METHOD

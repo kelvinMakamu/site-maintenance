@@ -5,7 +5,6 @@ import org.sql2o.Connection;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 
 public class Engineer {
@@ -63,14 +62,40 @@ public class Engineer {
         }
     }
 
-    public void update(int engineerId, String updatedFirstName, String updatedLastName){
-        String query = "UPDATE engineers SET firstName=:firstName, lastName=:lastName WHERE id=:id";
-        try(Connection connection = Database.sql2o.open()){
-            connection.createQuery(query)
-                      .addParameter("firstName",updatedFirstName)
-                      .addParameter("lastName",updatedLastName)
-                      .addParameter("id",engineerId)
-                      .executeUpdate();
+    public int update(int engineerId, String updatedFirstName, String updatedLastName){
+        Engineer foundEngineer = Engineer.find(engineerId);
+        String foundFirstName  = foundEngineer.getFirstName();
+        String foundLastName   = foundEngineer.getLastName();
+        if(!foundFirstName.equals(updatedFirstName) && !foundLastName.equals(updatedLastName)){
+            String query = "UPDATE engineers SET firstName=:firstName, lastName=:lastName WHERE id=:id";
+            try(Connection connection = Database.sql2o.open()){
+                connection.createQuery(query)
+                        .addParameter("firstName",updatedFirstName)
+                        .addParameter("lastName",updatedLastName)
+                        .addParameter("id",engineerId)
+                        .executeUpdate();
+            }
+            return 1000;
+        }else if(!foundFirstName.equals(updatedFirstName) && foundLastName.equals(updatedLastName)){
+            String query = "UPDATE engineers SET firstName=:firstName WHERE id=:id";
+            try(Connection connection = Database.sql2o.open()){
+                connection.createQuery(query)
+                        .addParameter("firstName",updatedFirstName)
+                        .addParameter("id",engineerId)
+                        .executeUpdate();
+            }
+            return 1002;
+        }else if(foundFirstName.equals(updatedFirstName) && !foundLastName.equals(updatedLastName)){
+            String query = "UPDATE engineers SET lastName=:lastName WHERE id=:id";
+            try(Connection connection = Database.sql2o.open()){
+                connection.createQuery(query)
+                        .addParameter("lastName",updatedLastName)
+                        .addParameter("id",engineerId)
+                        .executeUpdate();
+            }
+            return 1004;
+        }else{
+           return 1001;
         }
     }
 
