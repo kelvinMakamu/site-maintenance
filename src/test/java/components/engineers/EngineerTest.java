@@ -55,10 +55,19 @@ public class EngineerTest {
     public void all_returnsAllSavedEngineerObjects(){
         Engineer firstEngineer   = setUpNewEngineer();
         firstEngineer.save();
-        Engineer secondEngineer  = setUpNewEngineer();
+        Engineer secondEngineer  = new Engineer("Gerald","White");
         secondEngineer.save();
         assertTrue(Engineer.all().get(0).equals(firstEngineer));
         assertTrue(Engineer.all().get(1).equals(secondEngineer));
+    }
+
+    @Test
+    public void find_queryEngineerObjectByItsId(){
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        Engineer secondEngineer  = new Engineer("Gerald","White");
+        secondEngineer.save();
+        assertEquals(Engineer.find(secondEngineer.getId()),secondEngineer);
     }
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
