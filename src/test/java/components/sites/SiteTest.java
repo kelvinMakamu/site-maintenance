@@ -37,6 +37,12 @@ public class SiteTest {
         assertTrue(firstSite.equals(secondSite));
     }
 
+    @Test
+    public void save_insertsSiteObjectIntoDatabase(){
+        Site firstSite  = setUpNewSite();
+        firstSite.save();
+        assertTrue(Site.all().get(0).equals(firstSite));
+    }
 
     // HELPER METHOD
     public Site setUpNewSite(){
