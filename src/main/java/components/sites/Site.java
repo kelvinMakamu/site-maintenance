@@ -156,6 +156,15 @@ public class Site {
         }
     }
 
+    public void dissociateAllSiteOccurrence(){
+        String query = "DElETE FROM engineer_site WHERE siteId=:siteId";
+        try(Connection connection = Database.sql2o.open()){
+            connection.createQuery(query)
+                    .addParameter("siteId",this.id)
+                    .executeUpdate();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
