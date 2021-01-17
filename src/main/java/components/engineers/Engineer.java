@@ -14,4 +14,8 @@ public class Engineer {
         return this.firstName;
     }
 
+    public String getLastName(){
+        return this.lastName;
+    }
+
 }
