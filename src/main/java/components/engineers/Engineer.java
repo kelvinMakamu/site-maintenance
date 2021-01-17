@@ -15,6 +15,10 @@ public class Engineer {
         this.lastName  = lastName;
     }
 
+    public int getId() {
+        return this.id;
+    }
+
     public String getFirstName(){
         return this.firstName;
     }

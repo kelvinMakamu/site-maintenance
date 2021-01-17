@@ -43,6 +43,14 @@ public class EngineerTest {
         assertTrue(Engineer.all().get(0).equals(testEngineer));
     }
 
+    @Test
+    public void save_assignsIdToInsertedEngineerObject(){
+        Engineer testEngineer  = setUpNewEngineer();
+        testEngineer.save();
+        Engineer foundEngineer = Engineer.all().get(0);
+        assertEquals(testEngineer.getId(),foundEngineer.getId());
+    }
+
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
         return new Engineer("Kelvin","Makamu");
