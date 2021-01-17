@@ -63,10 +63,9 @@ public class Engineer {
     }
 
     public int update(String updatedFirstName, String updatedLastName){
-        int engineerId = this.id;
-        Engineer foundEngineer = Engineer.find(engineerId);
-        String foundFirstName  = foundEngineer.getFirstName();
-        String foundLastName   = foundEngineer.getLastName();
+        int engineerId         = this.id;
+        String foundFirstName  = this.firstName;
+        String foundLastName   = this.lastName;
         if(!foundFirstName.equals(updatedFirstName) && !foundLastName.equals(updatedLastName)){
             String query = "UPDATE engineers SET firstName=:firstName, lastName=:lastName WHERE id=:id";
             try(Connection connection = Database.sql2o.open()){
