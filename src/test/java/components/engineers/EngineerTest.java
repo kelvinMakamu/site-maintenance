@@ -165,6 +165,23 @@ public class EngineerTest {
         assertEquals(1,firstEngineer.getAssignedSites().size());
     }
 
+
+    @Test
+    public void dissociateAllSites_removeAllSitesAssociationWithEngineer(){
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        firstEngineer.assignSite(firstSite.getId());
+        Site secondSite          = new Site("yamoko","kigali");
+        secondSite.save();
+        firstEngineer.assignSite(secondSite.getId());
+        firstEngineer.dissociateAllSites();
+        assertFalse(firstEngineer.getAssignedSites().contains(secondSite));
+        assertFalse(firstEngineer.getAssignedSites().contains(firstSite));
+        assertEquals(0,firstEngineer.getAssignedSites().size());
+    }
+
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
         return new Engineer("kelvin","makamu");
