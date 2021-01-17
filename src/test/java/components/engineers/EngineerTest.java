@@ -1,6 +1,7 @@
 package components.engineers;
 
 import components.data.DatabaseRule;
+import components.sites.Site;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -128,7 +129,8 @@ public class EngineerTest {
         Site firstSite           = setUpNewSite();
         firstSite.save();
         firstEngineer.assignSite(firstSite.getId());
-
+        //Return Site By ID
+        //assertTrue getAssignedSites contains foundSite
     }
 
     // HELPER METHOD
@@ -137,6 +139,6 @@ public class EngineerTest {
     }
 
     public Site setUpNewSite(){
-        return new Site("Amaboko","Arusha");
+        return new Site("amaboko","arusha");
     }
 }
