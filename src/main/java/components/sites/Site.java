@@ -12,4 +12,8 @@ public class Site {
         this.name = name.toLowerCase();
         this.town = town.toLowerCase();;
     }
+
+    public String getName(){
+        return this.name;
+    }
 }
