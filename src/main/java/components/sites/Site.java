@@ -1,9 +1,11 @@
 package components.sites;
 
 import components.data.Database;
+import components.engineers.Engineer;
 import org.sql2o.Connection;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 
 public class Site {
@@ -42,6 +44,13 @@ public class Site {
                     .addParameter("town",this.town)
                     .executeUpdate()
                     .getKey();
+        }
+    }
+
+    public static List<Site> all(){
+        String query = "SELECT * FROM sites";
+        try(Connection connection = Database.sql2o.open()){
+            return connection.createQuery(query).executeAndFetch(Site.class);
         }
     }
 
