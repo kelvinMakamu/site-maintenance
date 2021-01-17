@@ -1,0 +1,40 @@
+{{#partial "title"}}
+    View Available Engineers
+{{/partial}}
+{{#partial "content"}}
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <h4> Maintenance Engineers</h4>
+            <hr/>
+            <div class="container">
+                {{#if engineers}}
+                    <div class="row">
+                        {{#each engineers }}
+                            <div class="col-md-3 col-lg-3 col-sm-12 card">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <p class="text-center department-name">{{firstName}} {{lastName}}</p>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <hr>
+                                        <h3 class="text-center">{{roleName}}</h3>
+                                        <h4 class="text-center dept-desc">{{departmentName}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{else}}
+                    <div class="row">
+                        <div class="col-md-12 col-md-12 col-sm-12 card">
+                            <p class="no-department">No engineers available!</p>
+                            <p>Engineer details will be populated once engineers have been added.</p>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}
