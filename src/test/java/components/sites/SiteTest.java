@@ -53,13 +53,22 @@ public class SiteTest {
     }
 
     @Test
-    public void all_returnsAllSavedEngineerObjects(){
+    public void all_returnsAllSavedSiteObjects(){
         Site firstSite   = setUpNewSite();
         firstSite.save();
         Site secondSite  = new Site("amagoro","kampala");
         secondSite.save();
         assertTrue(Site.all().get(0).equals(firstSite));
         assertTrue(Site.all().get(1).equals(secondSite));
+    }
+
+    @Test
+    public void find_querySiteObjectByItsId(){
+        Site firstSite   = setUpNewSite();
+        firstSite.save();
+        Site secondSite  = new Site("amagoro","kampala");
+        secondSite.save();
+        assertEquals(Site.find(secondSite.getId()),secondSite);
     }
 
     // HELPER METHOD

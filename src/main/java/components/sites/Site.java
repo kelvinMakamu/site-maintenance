@@ -1,7 +1,6 @@
 package components.sites;
 
 import components.data.Database;
-import components.engineers.Engineer;
 import org.sql2o.Connection;
 
 import java.sql.Timestamp;
@@ -59,11 +58,11 @@ public class Site {
         if (this == o) return true;
         if (!(o instanceof Site)) return false;
         Site site = (Site) o;
-        return id == site.id && getName().equals(site.getName()) && getTown().equals(site.getTown()) && Objects.equals(createdAt, site.createdAt);
+        return getId() == site.getId() && getName().equals(site.getName()) && getTown().equals(site.getTown());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, getName(), getTown(), createdAt);
+        return Objects.hash(getId(), getName(), getTown());
     }
 }
