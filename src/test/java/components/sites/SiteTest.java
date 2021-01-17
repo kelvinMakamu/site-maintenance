@@ -146,6 +146,18 @@ public class SiteTest {
         assertEquals(1, firstSite.getAssignedEngineer().size());
     }
 
+    @Test
+    public void dissociateEngineer_removesEngineerAssociationWithSite(){
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        firstSite.assignEngineer(firstEngineer.getId());
+        firstSite.dissociateEngineer(firstEngineer.getId());
+        assertFalse(firstSite.getAssignedEngineer().contains(firstEngineer));
+        assertEquals(0,firstSite.getAssignedEngineer().size());
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
