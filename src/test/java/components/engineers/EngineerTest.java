@@ -121,8 +121,22 @@ public class EngineerTest {
         assertEquals(0,Engineer.all().size());
     }
 
+    @Test
+    public void assignSite_assignAnEngineerASite(){
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        firstEngineer.assignSite(firstSite.getId());
+
+    }
+
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
         return new Engineer("kelvin","makamu");
+    }
+
+    public Site setUpNewSite(){
+        return new Site("Amaboko","Arusha");
     }
 }
