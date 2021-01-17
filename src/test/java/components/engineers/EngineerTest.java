@@ -128,10 +128,12 @@ public class EngineerTest {
         Engineer firstEngineer   = setUpNewEngineer();
         firstEngineer.save();
         Site firstSite           = setUpNewSite();
-        //firstSite.save();
-        // firstEngineer.assignSite(firstSite.getId());
+        firstSite.save();
+        firstEngineer.assignSite(firstSite.getId());
         //Return Site By ID
+        Site foundSite = Site.find(firstSite.getId());
         //assertTrue getAssignedSites contains foundSite
+        assertTrue(firstEngineer.getAssignedSites().contains(foundSite));
     }
 
     // HELPER METHOD
