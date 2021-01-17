@@ -170,6 +170,16 @@ public class SiteTest {
         assertEquals(0,firstSite.getAssignedEngineer().size());
     }
 
+    @Test
+    public void alreadyAssociated_siteThatHasBeenAssignedToAnEngineer_true(){
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        firstSite.assignEngineer(firstEngineer.getId());
+        assertTrue(firstSite.alreadyAssociated());
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
