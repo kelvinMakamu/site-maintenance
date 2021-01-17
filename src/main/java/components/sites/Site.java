@@ -100,6 +100,15 @@ public class Site {
         }
     }
 
+    public void delete(){
+        String query = "DELETE FROM sites WHERE id=:id";
+        try(Connection connection = Database.sql2o.open()){
+            connection.createQuery(query)
+                    .addParameter("id",this.id)
+                    .executeUpdate();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
