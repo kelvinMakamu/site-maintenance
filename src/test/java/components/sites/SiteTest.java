@@ -52,6 +52,16 @@ public class SiteTest {
         assertEquals(firstSite.getId(),foundSite.getId());
     }
 
+    @Test
+    public void all_returnsAllSavedEngineerObjects(){
+        Site firstSite   = setUpNewSite();
+        firstSite.save();
+        Site secondSite  = new Site("amagoro","kampala");
+        secondSite.save();
+        assertTrue(Site.all().get(0).equals(firstSite));
+        assertTrue(Site.all().get(1).equals(secondSite));
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
