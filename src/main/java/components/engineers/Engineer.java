@@ -3,6 +3,7 @@ package components.engineers;
 import components.data.Database;
 import org.sql2o.Connection;
 
+import javax.xml.crypto.Data;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Objects;
@@ -59,6 +60,17 @@ public class Engineer {
             return connection.createQuery(query)
                     .addParameter("id",engineerId)
                     .executeAndFetchFirst(Engineer.class);
+        }
+    }
+
+    public void update(int engineerId, String updatedFirstName, String updatedLastName){
+        String query = "UPDATE engineers SET firstName=:firstName, lastName=:lastName WHERE id=:id";
+        try(Connection connection = Database.sql2o.open()){
+            connection.createQuery(query)
+                      .addParameter("firstName",updatedFirstName)
+                      .addParameter("lastName",updatedLastName)
+                      .addParameter("id",engineerId)
+                      .executeUpdate();
         }
     }
 
