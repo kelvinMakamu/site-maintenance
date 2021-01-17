@@ -70,34 +70,36 @@ public class Engineer {
             String query = "UPDATE engineers SET firstName=:firstName, lastName=:lastName WHERE id=:id";
             try(Connection connection = Database.sql2o.open()){
                 connection.createQuery(query)
-                        .addParameter("firstName",updatedFirstName)
-                        .addParameter("lastName",updatedLastName)
-                        .addParameter("id",engineerId)
-                        .executeUpdate();
+                    .addParameter("firstName",updatedFirstName)
+                    .addParameter("lastName",updatedLastName)
+                    .addParameter("id",engineerId)
+                    .executeUpdate();
             }
             return 1000;
         }else if(!foundFirstName.equals(updatedFirstName) && foundLastName.equals(updatedLastName)){
             String query = "UPDATE engineers SET firstName=:firstName WHERE id=:id";
             try(Connection connection = Database.sql2o.open()){
                 connection.createQuery(query)
-                        .addParameter("firstName",updatedFirstName)
-                        .addParameter("id",engineerId)
-                        .executeUpdate();
+                    .addParameter("firstName",updatedFirstName)
+                    .addParameter("id",engineerId)
+                    .executeUpdate();
             }
             return 1002;
         }else if(foundFirstName.equals(updatedFirstName) && !foundLastName.equals(updatedLastName)){
             String query = "UPDATE engineers SET lastName=:lastName WHERE id=:id";
             try(Connection connection = Database.sql2o.open()){
                 connection.createQuery(query)
-                        .addParameter("lastName",updatedLastName)
-                        .addParameter("id",engineerId)
-                        .executeUpdate();
+                    .addParameter("lastName",updatedLastName)
+                    .addParameter("id",engineerId)
+                    .executeUpdate();
             }
             return 1004;
         }else{
            return 1001;
         }
     }
+
+
 
     @Override
     public boolean equals(Object o) {

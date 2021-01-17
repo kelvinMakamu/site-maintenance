@@ -76,7 +76,8 @@ public class EngineerTest {
         String initialFirstName  = firstEngineer.getFirstName();
         String initialLastName   = firstEngineer.getLastName();
         firstEngineer.save();
-        int updateStatus = firstEngineer.update(firstEngineer.getId(),"melvin","jones");
+        int updateStatus         = firstEngineer.update(firstEngineer.getId(),
+                "melvin","jones");
         Engineer updatedEngineer = Engineer.find(firstEngineer.getId());
         String updatedFirstName  = updatedEngineer.getFirstName();
         String updatedLastName   = updatedEngineer.getLastName();
@@ -89,9 +90,11 @@ public class EngineerTest {
 
             case 1002:
             assertNotEquals(initialFirstName,updatedFirstName);
+            assertEquals(initialLastName,updatedLastName);
             break;
 
             case 1004:
+            assertEquals(initialFirstName,updatedFirstName);
             assertNotEquals(initialLastName,updatedLastName);
             break;
 
@@ -100,6 +103,13 @@ public class EngineerTest {
             assertEquals(initialLastName,updatedLastName);
             break;
         }
+    }
+
+    @Test
+    public void delete_deleteEngineerRecords_0(){
+        Engineer engineer = setUpNewEngineer();
+        engineer.delete();
+        assertEquals(0, Engineer.all().size());
     }
 
     // HELPER METHOD
