@@ -51,6 +51,15 @@ public class EngineerTest {
         assertEquals(testEngineer.getId(),foundEngineer.getId());
     }
 
+    @Test
+    public void all_returnsAllSavedEngineerObjects(){
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        Engineer secondEngineer  = setUpNewEngineer();
+        secondEngineer.save();
+        assertTrue(Engineer.all().get(0).equals(firstEngineer));
+        assertTrue(Engineer.all().get(1).equals(secondEngineer));
+    }
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
         return new Engineer("Kelvin","Makamu");
