@@ -63,6 +63,43 @@ public class Site {
         }
     }
 
+    public int update(String updatedName, String updatedTown){
+        int siteId         = this.id;
+        String foundName   = this.name;
+        String foundTown   = this.town;
+        if(!foundName.equals(updatedName) && !foundTown.equals(updatedTown)){
+            String query = "UPDATE sites SET name=:name, town=:town WHERE id=:id";
+            try(Connection connection = Database.sql2o.open()){
+                connection.createQuery(query)
+                        .addParameter("name",updatedName)
+                        .addParameter("town",updatedTown)
+                        .addParameter("id",siteId)
+                        .executeUpdate();
+            }
+            return 1000;
+        }else if(!foundName.equals(updatedName) && foundTown.equals(updatedTown)){
+            String query = "UPDATE sites SET name=:name WHERE id=:id";
+            try(Connection connection = Database.sql2o.open()){
+                connection.createQuery(query)
+                        .addParameter("name",updatedName)
+                        .addParameter("id",siteId)
+                        .executeUpdate();
+            }
+            return 1002;
+        }else if(foundName.equals(updatedName) && !foundTown.equals(updatedTown)){
+            String query = "UPDATE sites SET town=:town WHERE id=:id";
+            try(Connection connection = Database.sql2o.open()){
+                connection.createQuery(query)
+                        .addParameter("town",updatedTown)
+                        .addParameter("id",siteId)
+                        .executeUpdate();
+            }
+            return 1004;
+        }else{
+            return 1001;
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
