@@ -109,6 +109,13 @@ public class Engineer {
         }
     }
 
+    public static void deleteAll(){
+        String query = "DELETE FROM engineers";
+        try(Connection connection = Database.sql2o.open()){
+            connection.createQuery(query).executeUpdate();
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
