@@ -108,6 +108,7 @@ public class EngineerTest {
     @Test
     public void delete_deleteEngineerRecords_0(){
         Engineer engineer = setUpNewEngineer();
+        engineer.save();
         engineer.delete();
         assertEquals(0, Engineer.all().size());
     }

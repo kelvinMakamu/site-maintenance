@@ -105,7 +105,13 @@ public class SiteTest {
         }
     }
 
-
+    @Test
+    public void delete_deleteSiteRecords_0(){
+        Site firstSite   = setUpNewSite();
+        firstSite.save();
+        firstSite.delete();
+        assertEquals(0, Site.all().size());
+    }
 
     // HELPER METHOD
     public Site setUpNewSite(){
