@@ -29,6 +29,13 @@ public class EngineerTest {
         assertEquals("Makamu",testEngineer.getLastName());
     }
 
+    @Test
+    public void equals_comparesTwoEngineerObjects_true(){
+        Engineer firstEngineer  = setUpNewEngineer();
+        Engineer secondEngineer = setUpNewEngineer();
+        assertTrue(firstEngineer.equals(secondEngineer));
+    }
+
     // HELPER METHOD
     public Engineer setUpNewEngineer(){
         return new Engineer("Kelvin","Makamu");
