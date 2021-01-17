@@ -14,8 +14,12 @@ public class SiteTest {
 
     @Test
     public void Site_instantiatesCorrectly_true(){
-        Site testSite = new Site("amaboko","arusha");
+        Site testSite = setUpNewSite();
         assertTrue(testSite instanceof Site);
     }
 
+    // HELPER METHOD
+    public Site setUpNewSite(){
+        return new Site("amaboko","arusha");
+    }
 }
