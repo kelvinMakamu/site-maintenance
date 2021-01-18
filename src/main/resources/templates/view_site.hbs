@@ -1,0 +1,92 @@
+{{#partial "title"}}
+    View site details and assign an engineer
+{{/partial}}
+
+{{#partial "content"}}
+    {{#if createdEngineer}}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{createdEngineer}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+    <div class="row">
+        {{#if assigned}}
+            <div class="col-md-8 col-lg-8 col-sm-12">
+            <h4 class="text-center"> <b>{{site.name}}</b> Assigned Engineer</h4>
+            <hr/>
+            <div class="container department-container">
+                {{#if engineer}}
+                    <div class="row">
+                            <div class="col-md-3 col-lg-3 col-sm-12 card">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <p class="text-center department-name">{{name}}</p>
+                                        <h3 class="text-center">{{town}}</h3>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <hr>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <a href="/sites/{{site.id}}/engineers/{{id}}/dissociate"
+                                           class="btn btn-outline-danger btn-sm btn-block">Unlink Engineer</a>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                {{else}}
+                    <div class="row">
+                        <div class="col-md-10 col-md-10 col-sm-12 card">
+                            <p class="no-department">No assigned engineer available!</p>
+                            <p>The site has not been assigned any engineer to maintain it.</p>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+        {{else}}
+            <div class="col-md-3 col-lg-3 col-sm-12 department-form">
+                <h4>Assign Engineer</h4>
+                <hr>
+                <form method="post" action="/sites/{{site.id}}/assignEngineer">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Select Engineer</label>
+                                <select name="siteId" class="form-control" required>
+                                    {{#if foundEngineers}}
+                                        {{#each foundEngineers}}
+                                            <option value="{{id}}">{{firstName}} {{lastName}}</option>
+                                        {{/each}}
+                                    {{/if}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12">
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="form-group">
+                                <a href="/sites/{{site.id}}/assignEngineer" class="btn btn-secondary btn-sm">
+                                    New Engineer
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12">
+                            <div class="form-group">
+                                <input class="btn btn-success btn-sm" type="submit" value="Assign Engineer">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        {{/if}}
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}
