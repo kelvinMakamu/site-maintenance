@@ -182,6 +182,21 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        get("/sites/:id/view", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            Site site = Site.find(Integer.parseInt(req.params("id")));
+            model.put("site",site);
+            boolean assigned = site.alreadyAssociated();
+            model.put("assigned",assigned);
+            List<Engineer> foundEngineers = Site.getEngineersNotAssigned();
+            model.put("foundEngineers",foundEngineers);
+            List<Engineer> engineer  = site.getAssignedEngineer();
+            model.put("engineer",engineer);
+            model.put("createdEngineer",req.session().attribute("createdEngineer"));
+            req.session().removeAttribute("createdEngineer");
+            return new ModelAndView(model,"view_site.hbs");
+        }, new HandlebarsTemplateEngine());
+
         get("/sites/:id/delete", (req, res) -> {
             Site site = Site.find(Integer.parseInt(req.params("id")));
             site.dissociateAllSiteOccurrence();
