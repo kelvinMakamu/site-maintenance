@@ -201,6 +201,22 @@ public class SiteTest {
         assertEquals(1,Site.getSitesNotAssigned().size());
     }
 
+    @Test
+    public void getEngineersNotAssigned_returnEngineersNotAssigned(){
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        Site secondSite          = new Site("grenade","washington");
+        secondSite.save();
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        firstSite.assignEngineer(firstEngineer.getId());
+        Engineer secondEngineer  = new Engineer("gladwell","dubai");
+        secondEngineer.save();
+        assertFalse(Site.getEngineersNotAssigned().contains(firstEngineer));
+        assertTrue(Site.getEngineersNotAssigned().contains(secondEngineer));
+        assertEquals(1,Site.getEngineersNotAssigned().size());
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
