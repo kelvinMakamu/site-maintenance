@@ -198,7 +198,7 @@ public class SiteTest {
         firstSite.assignEngineer(firstEngineer.getId());
         assertFalse(Site.getSitesNotAssigned().contains(firstSite));
         assertTrue(Site.getSitesNotAssigned().contains(secondSite));
-        assertTrue(1,Site.getSitesNotAssigned().size());
+        assertEquals(1,Site.getSitesNotAssigned().size());
     }
 
     // HELPER METHOD
