@@ -201,6 +201,13 @@ public class Site {
         }
     }
 
+    public static List<Engineer> getEngineersNotAssigned(){
+        String query = "SELECT * FROM engineers WHERE id NOT IN(SELECT engineerId FROM engineer_site)";
+        try(Connection connection = Database.sql2o.open()){
+            return connection.createQuery(query).executeAndFetch(Engineer.class);
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
