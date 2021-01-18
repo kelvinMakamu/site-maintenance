@@ -61,6 +61,18 @@ public class App {
             return new ModelAndView(model,"edit_engineer.hbs");
         }, new HandlebarsTemplateEngine());
 
+        post("/engineers/:id", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int engineerId    = Integer.parseInt(req.params("id"));
+            String firstName  = req.queryParams("firstName");
+            String lastName   = req.queryParams("lastName");
+            Engineer engineer = Engineer.find(engineerId);
+            engineer.update(firstName,lastName);
+            req.session().attribute("updatedEngineer","Engineer was updated successfully!");
+            res.redirect("/engineers");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
         get("/sites",(req,res) -> {
             Map<String,Object> model  = new HashMap<>();
             List<Site> sites = Site.all();
