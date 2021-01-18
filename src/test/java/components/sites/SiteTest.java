@@ -187,6 +187,20 @@ public class SiteTest {
         assertFalse(firstSite.alreadyAssociated());
     }
 
+    @Test
+    public void getSitesNotAssigned_returnSitesNotAssigned(){
+        Site firstSite           = setUpNewSite();
+        firstSite.save();
+        Site secondSite          = new Site("grenade","washington");
+        secondSite.save();
+        Engineer firstEngineer   = setUpNewEngineer();
+        firstEngineer.save();
+        firstSite.assignEngineer(firstEngineer.getId());
+        assertFalse(Site.getSitesNotAssigned().contains(firstSite));
+        assertTrue(Site.getSitesNotAssigned().contains(secondSite));
+        assertTrue(1,Site.getSitesNotAssigned().size());
+    }
+
     // HELPER METHOD
     public Site setUpNewSite(){
         return new Site("amaboko","arusha");
