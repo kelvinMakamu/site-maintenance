@@ -77,6 +77,8 @@ public class App {
             Map<String,Object> model = new HashMap<>();
             Engineer engineer = Engineer.find(Integer.parseInt(req.params("id")));
             model.put("engineer",engineer);
+            List<Site> foundSites = Site.getSitesNotAssigned();
+            model.put("foundSites",foundSites);
             List<Site> sites  = engineer.getAssignedSites();
             model.put("sites",sites);
             return new ModelAndView(model,"view_engineer.hbs");
