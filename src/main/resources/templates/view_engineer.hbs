@@ -4,82 +4,60 @@
 
 {{#partial "content"}}
 
-    {{#if createdEngineer}}
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{createdEngineer}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    {{/if}}
-
-    {{#if updatedEngineer}}
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            {{updatedEngineer}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    {{/if}}
-
-    {{#if deletedEngineer}}
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{deletedEngineer}}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    {{/if}}
-
     <div class="row">
         <div class="col-md-3 col-lg-3 col-sm-12 department-form">
-            <h4>New Engineer</h4>
+            <h4>Assign Site</h4>
             <hr>
-            <form method="post" action="/engineers">
+            <form method="post" action="/engineers/{{engineer.id}}/assignSite">
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="form-group">
-                            <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="First Name"
-                                   name="firstName" required>
+                            <label>Select Site</label>
+                            <select name="siteId" class="form-control" required>
+                                <option></option>
+                            </select>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
-                        <div class="form-group">
-                            <label>Last Name</label>
-                            <input class="form-control" type="text" placeholder="Last Name"
-                                   name="lastName" required>
-                        </div>
+                        <hr>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 col-lg-12 col-sm-12">
+                    <div class="col-md-6 col-lg-6 col-sm-12">
                         <div class="form-group">
-                            <input class="btn btn-success" type="submit" value="Add Engineer">
+                            <a href="/engineers/{{engineer.id}}/assignSite" class="btn btn-secondary btn-sm">
+                                New Site
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12">
+                        <div class="form-group">
+                            <input class="btn btn-success btn-sm" type="submit" value="Assign Site">
                         </div>
                     </div>
                 </div>
             </form>
         </div>
         <div class="col-md-8 col-lg-8 col-sm-12">
-            <h4 class="text-center"> Maintenance Engineers</h4>
+            <h4 class="text-center"> <b>Eng. {{engineer.firstName}} {{engineer.lastName}}</b> Assigned Sites</h4>
             <hr/>
             <div class="container department-container">
-                {{#if engineers}}
+                {{#if sites}}
                     <div class="row">
-                        {{#each engineers }}
+                        {{#each sites }}
                             <div class="col-md-5 col-lg-5 col-sm-12 card">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12">
-                                        <p class="text-center department-name">{{firstName}} {{ lastName}}</p>
+                                        <p class="text-center department-name">{{name}}</p>
+                                        <h3 class="text-center">{{town}}</h3>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <hr>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-sm-12">
-                                        <a href="/engineers/{{id}}" class="btn btn-warning btn-sm">Update</a>
+                                        <a href="/sites/{{id}}" class="btn btn-warning btn-sm">Update</a>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-sm-12">
                                         <a href="/engineers/{{id}}/delete" class="btn btn-danger btn-sm">Delete</a>
@@ -91,8 +69,8 @@
                 {{else}}
                     <div class="row">
                         <div class="col-md-10 col-md-10 col-sm-12 card">
-                            <p class="no-department">No engineers available!</p>
-                            <p>Please fill in the form on the left to create a new engineer</p>
+                            <p class="no-department">No assigned sites available!</p>
+                            <p>The engineer has not been assigned any sites to maintain.</p>
                         </div>
                     </div>
                 {{/if}}
