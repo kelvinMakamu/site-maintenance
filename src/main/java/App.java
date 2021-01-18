@@ -97,6 +97,17 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        get("/engineers/:engineerId/sites/:siteId/dissociate",(req,res)->{
+            Map<String,Object> model = new HashMap<>();
+            int engineerId    = Integer.parseInt(req.params("engineerId"));
+            int siteId        = Integer.parseInt(req.params("siteId"));
+            Engineer engineer = Engineer.find(engineerId);
+            engineer.dissociateSite(siteId);
+            req.session().attribute("createdEngineer","Site successfully unlinked from the engineer!");
+            res.redirect("/engineers/"+engineerId+"/view");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
         get("/engineers/:id/delete", (req, res) -> {
             Map<String,Object> model = new HashMap<>();
             Engineer engineer = Engineer.find(Integer.parseInt(req.params("id")));
