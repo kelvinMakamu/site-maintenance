@@ -73,7 +73,16 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-        post("/engineers/:id/delete", (req, res) -> {
+        get("/engineers/:id/view", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            Engineer engineer = Engineer.find(Integer.parseInt(req.params("id")));
+            model.put("engineer",engineer);
+            List<Site> sites  = engineer.getAssignedSites();
+            model.put("sites",sites);
+            return new ModelAndView(model,"view_engineer.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/engineers/:id/delete", (req, res) -> {
             Map<String,Object> model = new HashMap<>();
             Engineer engineer = Engineer.find(Integer.parseInt(req.params("id")));
             engineer.delete();
