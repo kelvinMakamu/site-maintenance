@@ -162,5 +162,16 @@ public class App {
             res.redirect("/sites");
             return null;
         }, new HandlebarsTemplateEngine());
+
+        get("/sites/:id/delete", (req, res) -> {
+            Site site = Site.find(Integer.parseInt(req.params("id")));
+            site.dissociateAllSiteOccurrence();
+            site.delete();
+            req.session().attribute("deletedSite","Site was deleted successfully!");
+            res.redirect("/sites");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+
     }
 }
