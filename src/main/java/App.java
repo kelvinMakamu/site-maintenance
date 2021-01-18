@@ -86,6 +86,14 @@ public class App {
             return new ModelAndView(model,"view_engineer.hbs");
         }, new HandlebarsTemplateEngine());
 
+        get("/engineers/:id/assignSite", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int engineerId    = Integer.parseInt(req.params("id"));
+            Engineer engineer = Engineer.find(engineerId);
+            model.put("engineer",engineer);
+            return new ModelAndView(model,"assign_engineer.hbs");
+        }, new HandlebarsTemplateEngine());
+
         post("/engineers/:id/assignSite", (req, res) -> {
             Map<String,Object> model = new HashMap<>();
             int engineerId    = Integer.parseInt(req.params("id"));
