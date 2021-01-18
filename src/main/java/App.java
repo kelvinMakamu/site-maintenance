@@ -95,7 +95,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         post("/engineers/:engineerId/assignNewSite",(req,res)->{
-            int engineerId    = Integer.parseInt(req.params("id"));
+            int engineerId    = Integer.parseInt(req.params("engineerId"));
             String name       = req.queryParams("name");
             String town       = req.queryParams("town");
             Site site         = new Site(name,town);
@@ -132,6 +132,7 @@ public class App {
         get("/engineers/:id/delete", (req, res) -> {
             Map<String,Object> model = new HashMap<>();
             Engineer engineer = Engineer.find(Integer.parseInt(req.params("id")));
+            engineer.dissociateAllSites();
             engineer.delete();
             req.session().attribute("deletedEngineer","Engineer was deleted successfully!");
             res.redirect("/engineers");
