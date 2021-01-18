@@ -108,7 +108,6 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         post("/engineers/:id/assignSite", (req, res) -> {
-            Map<String,Object> model = new HashMap<>();
             int engineerId    = Integer.parseInt(req.params("id"));
             Engineer engineer = Engineer.find(engineerId);
             int siteId  = Integer.parseInt(req.queryParams("siteId"));
@@ -119,7 +118,6 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         get("/engineers/:engineerId/sites/:siteId/dissociate",(req,res)->{
-            Map<String,Object> model = new HashMap<>();
             int engineerId    = Integer.parseInt(req.params("engineerId"));
             int siteId        = Integer.parseInt(req.params("siteId"));
             Engineer engineer = Engineer.find(engineerId);
@@ -130,7 +128,6 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         get("/engineers/:id/delete", (req, res) -> {
-            Map<String,Object> model = new HashMap<>();
             Engineer engineer = Engineer.find(Integer.parseInt(req.params("id")));
             engineer.dissociateAllSites();
             engineer.delete();
@@ -216,7 +213,7 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-        post("/site/:siteId/assignNewEngineer",(req,res)->{
+        post("/sites/:siteId/assignNewEngineer",(req,res)->{
             int siteId        = Integer.parseInt(req.params("siteId"));
             String firstName  = req.queryParams("firstName");
             String lastName   = req.queryParams("lastName");

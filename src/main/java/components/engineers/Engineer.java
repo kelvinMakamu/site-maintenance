@@ -65,7 +65,7 @@ public class Engineer {
     }
 
     public static List<Engineer> all(){
-        String query = "SELECT * FROM engineers";
+        String query = "SELECT * FROM engineers ORDER BY id DESC";
         try(Connection connection = Database.sql2o.open()){
             return connection.createQuery(query).executeAndFetch(Engineer.class);
         }

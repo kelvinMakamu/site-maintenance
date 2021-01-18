@@ -66,7 +66,7 @@ public class Site {
     }
 
     public static List<Site> all(){
-        String query = "SELECT * FROM sites";
+        String query = "SELECT * FROM sites ORDER BY id DESC";
         try(Connection connection = Database.sql2o.open()){
             return connection.createQuery(query).executeAndFetch(Site.class);
         }
@@ -195,14 +195,16 @@ public class Site {
     }
 
     public static List<Site> getSitesNotAssigned(){
-        String query = "SELECT * FROM sites WHERE id NOT IN(SELECT siteId FROM engineer_site)";
+        String query = "SELECT * FROM sites WHERE id NOT IN(SELECT siteId FROM engineer_site)" +
+                " ORDER BY id DESC";
         try(Connection connection = Database.sql2o.open()){
             return connection.createQuery(query).executeAndFetch(Site.class);
         }
     }
 
     public static List<Engineer> getEngineersNotAssigned(){
-        String query = "SELECT * FROM engineers WHERE id NOT IN(SELECT engineerId FROM engineer_site)";
+        String query = "SELECT * FROM engineers WHERE id NOT IN(SELECT engineerId FROM engineer_site)" +
+                "  ORDER BY id DESC";
         try(Connection connection = Database.sql2o.open()){
             return connection.createQuery(query).executeAndFetch(Engineer.class);
         }
