@@ -21,7 +21,11 @@
                         <div class="form-group">
                             <label>Select Site</label>
                             <select name="siteId" class="form-control" required>
-                                <option></option>
+                                {{#if foundSites}}
+                                    {{#each foundSites}}
+                                        <option value="{{id}}">{{name}}</option>
+                                    {{/each}}
+                                {{/if}}
                             </select>
                         </div>
                     </div>
