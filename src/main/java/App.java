@@ -73,6 +73,15 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        post("/engineers/:id/delete", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            Engineer engineer = Engineer.find(Integer.parseInt(req.params("id")));
+            engineer.delete();
+            req.session().attribute("deletedEngineer","Engineer was deleted successfully!");
+            res.redirect("/engineers");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
         get("/sites",(req,res) -> {
             Map<String,Object> model  = new HashMap<>();
             List<Site> sites = Site.all();
