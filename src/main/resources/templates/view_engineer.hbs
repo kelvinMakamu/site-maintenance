@@ -1,0 +1,104 @@
+{{#partial "title"}}
+    View engineer details and assigned sites
+{{/partial}}
+
+{{#partial "content"}}
+
+    {{#if createdEngineer}}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{createdEngineer}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
+    {{#if updatedEngineer}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{updatedEngineer}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
+    {{#if deletedEngineer}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{deletedEngineer}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
+    <div class="row">
+        <div class="col-md-3 col-lg-3 col-sm-12 department-form">
+            <h4>New Engineer</h4>
+            <hr>
+            <form method="post" action="/engineers">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input class="form-control" type="text" placeholder="First Name"
+                                   name="firstName" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input class="form-control" type="text" placeholder="Last Name"
+                                   name="lastName" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <input class="btn btn-success" type="submit" value="Add Engineer">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-12">
+            <h4 class="text-center"> Maintenance Engineers</h4>
+            <hr/>
+            <div class="container department-container">
+                {{#if engineers}}
+                    <div class="row">
+                        {{#each engineers }}
+                            <div class="col-md-5 col-lg-5 col-sm-12 card">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <p class="text-center department-name">{{firstName}} {{ lastName}}</p>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <hr>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12">
+                                        <a href="/engineers/{{id}}" class="btn btn-warning btn-sm">Update</a>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12">
+                                        <a href="/engineers/{{id}}/delete" class="btn btn-danger btn-sm">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{else}}
+                    <div class="row">
+                        <div class="col-md-10 col-md-10 col-sm-12 card">
+                            <p class="no-department">No engineers available!</p>
+                            <p>Please fill in the form on the left to create a new engineer</p>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}
