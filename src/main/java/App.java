@@ -197,6 +197,38 @@ public class App {
             return new ModelAndView(model,"view_site.hbs");
         }, new HandlebarsTemplateEngine());
 
+        get("/sites/:id/assignEngineer", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int siteId    = Integer.parseInt(req.params("id"));
+            Site site     = Site.find(siteId);
+            model.put("site",site);
+            return new ModelAndView(model,"assign_site.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/sites/:id/assignEngineer", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int siteId = Integer.parseInt(req.params("id"));
+            Site site  = Site.find(siteId);
+            int engineerId  = Integer.parseInt(req.queryParams("engineerId"));
+            site.assignEngineer(engineerId);
+            req.session().attribute("createdEngineer","Engineer was assigned successfully!");
+            res.redirect("/sites/"+siteId+"/view");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        post("/site/:siteId/assignNewEngineer",(req,res)->{
+            int siteId        = Integer.parseInt(req.params("siteId"));
+            String firstName  = req.queryParams("firstName");
+            String lastName   = req.queryParams("lastName");
+            Engineer engineer = new Engineer(firstName,lastName);
+            engineer.save();
+            Site site = Site.find(siteId);
+            site.assignEngineer(engineer.getId());
+            req.session().attribute("createdEngineer","Engineer successfully assigned to the site!");
+            res.redirect("/sites/"+siteId+"/view");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
         get("/sites/:id/delete", (req, res) -> {
             Site site = Site.find(Integer.parseInt(req.params("id")));
             site.dissociateAllSiteOccurrence();
