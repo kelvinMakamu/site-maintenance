@@ -58,7 +58,7 @@
                 {{#if sites}}
                     <div class="row">
                         {{#each sites }}
-                            <div class="col-md-5 col-lg-5 col-sm-12 card">
+                            <div class="col-md-3 col-lg-3 col-sm-12 card">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <p class="text-center department-name">{{name}}</p>
@@ -67,11 +67,9 @@
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <hr>
                                     </div>
-                                    <div class="col-md-6 col-lg-6 col-sm-12">
-                                        <a href="/sites/{{id}}" class="btn btn-warning btn-sm">Update</a>
-                                    </div>
-                                    <div class="col-md-6 col-lg-6 col-sm-12">
-                                        <a href="/engineers/{{id}}/delete" class="btn btn-danger btn-sm">Delete</a>
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <a href="/engineers/{{engineer.id}}/sites/{{id}}/dissociate"
+                                           class="btn btn-outline-danger btn-sm btn-block">Unlink Site</a>
                                     </div>
                                 </div>
                             </div>

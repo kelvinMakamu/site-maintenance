@@ -8,7 +8,6 @@ select, input, input:focus, textarea:focus, input.form-control:focus {
 }
 
 .btn{
-    color: #fff !important;
     border-radius: unset !important;
 }
 
