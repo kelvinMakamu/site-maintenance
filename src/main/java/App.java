@@ -53,6 +53,14 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        get("/engineers/:id", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int engineerId    = Integer.parseInt(req.params("id"));
+            Engineer engineer = Engineer.find(engineerId);
+            model.put("engineer",engineer);
+            return new ModelAndView(model,"edit_engineer.hbs");
+        }, new HandlebarsTemplateEngine());
+    
         get("/sites",(req,res) -> {
             Map<String,Object> model  = new HashMap<>();
             List<Site> sites = Site.all();
