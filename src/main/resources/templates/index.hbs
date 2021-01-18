@@ -10,15 +10,17 @@
                 {{#if engineers}}
                     <div class="row">
                         {{#each engineers }}
-                            <div class="col-md-3 col-lg-3 col-sm-12 card">
+                            <div class="col-md-2 col-lg-2 col-sm-12 card">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <p class="text-center department-name">{{firstName}} {{lastName}}</p>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <hr>
-                                        <div class="col-md-4 col-lg-4 col-sm-12">
-                                            <a href="/engineers/{{id}}/view" class="btn btn-primary btn-sm">View</a>
+                                        <div class="col-md-12 col-lg-12 col-sm-12">
+                                            <a href="/engineers/{{id}}/view" class="btn btn-info btn-sm">
+                                                View Details
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
