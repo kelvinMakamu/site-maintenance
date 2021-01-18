@@ -1,0 +1,41 @@
+{{#partial "title"}}
+    Assign a new site to an engineer
+{{/partial}}
+
+{{#partial "content"}}
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-12 card">
+            <h4>Assign Site to Eng. {{engineer.firstName}} {{engineer.lastName}}</h4>
+            <hr>
+            <form method="post" action="/engineers/{{engineer.id}}/assignNewSite">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Site Name</label>
+                            <input class="form-control" type="text" placeholder="Site Name"
+                                   name="name" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Site Town</label>
+                            <input class="form-control" type="text" placeholder="Site Town Name"
+                                   name="town" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <input class="btn btn-success" type="submit" value="Add Site">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}
