@@ -81,7 +81,20 @@ public class App {
             model.put("foundSites",foundSites);
             List<Site> sites  = engineer.getAssignedSites();
             model.put("sites",sites);
+            model.put("createdEngineer",req.session().attribute("createdEngineer"));
+            req.session().removeAttribute("createdEngineer");
             return new ModelAndView(model,"view_engineer.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/engineers/:id/assignSite", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int engineerId    = Integer.parseInt(req.params("id"));
+            Engineer engineer = Engineer.find(engineerId);
+            int siteId  = Integer.parseInt(req.queryParams("siteId"));
+            engineer.assignSite(siteId);
+            req.session().attribute("createdEngineer","Engineer was added successfully!");
+            res.redirect("/engineers/"+engineerId+"/view");
+            return null;
         }, new HandlebarsTemplateEngine());
 
         get("/engineers/:id/delete", (req, res) -> {
