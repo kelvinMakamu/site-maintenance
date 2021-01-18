@@ -163,6 +163,25 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        get("/sites/:id", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int siteId = Integer.parseInt(req.params("id"));
+            Site site = Site.find(siteId);
+            model.put("site",site);
+            return new ModelAndView(model,"edit_site.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/sites/:id", (req, res) -> {
+            int siteId   = Integer.parseInt(req.params("id"));
+            String name  = req.queryParams("name");
+            String town  = req.queryParams("town");
+            Site site    = Site.find(siteId);
+            site.update(name,town);
+            req.session().attribute("updatedSite","Site was updated successfully!");
+            res.redirect("/sites");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
         get("/sites/:id/delete", (req, res) -> {
             Site site = Site.find(Integer.parseInt(req.params("id")));
             site.dissociateAllSiteOccurrence();
@@ -171,7 +190,6 @@ public class App {
             res.redirect("/sites");
             return null;
         }, new HandlebarsTemplateEngine());
-
 
     }
 }
