@@ -94,6 +94,19 @@ public class App {
             return new ModelAndView(model,"assign_engineer.hbs");
         }, new HandlebarsTemplateEngine());
 
+        post("/engineers/:engineerId/assignNewSite",(req,res)->{
+            int engineerId    = Integer.parseInt(req.params("id"));
+            String name       = req.queryParams("name");
+            String town       = req.queryParams("town");
+            Site site         = new Site(name,town);
+            site.save();
+            Engineer engineer = Engineer.find(engineerId);
+            engineer.assignSite(site.getId());
+            req.session().attribute("createdEngineer","Site successfully assigned to the engineer!");
+            res.redirect("/engineers/"+engineerId+"/view");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
         post("/engineers/:id/assignSite", (req, res) -> {
             Map<String,Object> model = new HashMap<>();
             int engineerId    = Integer.parseInt(req.params("id"));
