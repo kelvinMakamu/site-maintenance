@@ -14,16 +14,18 @@
     <div class="row">
         {{#if assigned}}
             <div class="col-md-8 col-lg-8 col-sm-12">
-            <h4 class="text-center"> <b>{{site.name}}</b> Assigned Engineer</h4>
+            <h4 class="text-center"> Site <b>{{site.name}}</b> Assigned Engineer</h4>
             <hr/>
             <div class="container department-container">
                 {{#if engineer}}
-                    <div class="row">
-                            <div class="col-md-3 col-lg-3 col-sm-12 card">
+                    {{#each engineer}}
+                        <div class="row">
+                            <div class="col-md-5 col-lg-5 col-sm-12 card">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12">
-                                        <p class="text-center department-name">{{name}}</p>
-                                        <h3 class="text-center">{{town}}</h3>
+                                        <p class="text-center department-name">
+                                            {{firstName}} {{lastName}}
+                                        </p>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <hr>
@@ -34,7 +36,9 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
+                        </div>
+
+                    {{/each}}
                 {{else}}
                     <div class="row">
                         <div class="col-md-10 col-md-10 col-sm-12 card">
@@ -54,7 +58,7 @@
                         <div class="col-md-12 col-lg-12 col-sm-12">
                             <div class="form-group">
                                 <label>Select Engineer</label>
-                                <select name="siteId" class="form-control" required>
+                                <select name="engineerId" class="form-control" required>
                                     {{#if foundEngineers}}
                                         {{#each foundEngineers}}
                                             <option value="{{id}}">{{firstName}} {{lastName}}</option>

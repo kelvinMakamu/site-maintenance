@@ -229,6 +229,16 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        get("/sites/:siteId/engineers/:engineerId/dissociate",(req,res)->{
+            int engineerId    = Integer.parseInt(req.params("engineerId"));
+            int siteId        = Integer.parseInt(req.params("siteId"));
+            Site site         = Site.find(siteId);
+            site.dissociateEngineer(engineerId);
+            req.session().attribute("createdEngineer","Engineer successfully unlinked from the site!");
+            res.redirect("/sites/"+siteId+"/view");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
         get("/sites/:id/delete", (req, res) -> {
             Site site = Site.find(Integer.parseInt(req.params("id")));
             site.dissociateAllSiteOccurrence();
